@@ -1,0 +1,8 @@
+{
+  "name": "Saratoga Software",
+  "description": "Modern software and data solutions website featuring Gemini-powered tools for image editing, generation, and video creation.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
