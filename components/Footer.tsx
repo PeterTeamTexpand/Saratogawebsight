@@ -18,12 +18,28 @@ const Footer: React.FC = () => {
 
   return (
     <footer className="bg-neutral-950 border-t border-white/5 pt-10 pb-6 relative overflow-hidden">
-      {/* Decorative Footer Hexagons */}
+      {/* Decorative Footer Hexagons with varied animations */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-         <FooterHexagon size={300} className="-top-20 -left-20 text-[#00AEEF] opacity-[0.15] animate-float delay-100" />
-         <FooterHexagon size={200} className="top-40 right-10 text-gray-700 opacity-[0.25] animate-float delay-300" />
-         <FooterHexagon size={150} className="bottom-0 left-1/3 text-[#00AEEF] opacity-[0.1] animate-float delay-500" />
-         <FooterHexagon size={400} className="-bottom-32 -right-32 text-[#00AEEF] opacity-[0.2] animate-float" />
+         <FooterHexagon 
+            size={300} 
+            className="-top-20 -left-20 text-[#00AEEF] opacity-[0.15] animate-float" 
+            style={{ animationDuration: '7.2s', animationDelay: '-1s' }}
+         />
+         <FooterHexagon 
+            size={200} 
+            className="top-40 right-10 text-gray-700 opacity-[0.25] animate-float" 
+            style={{ animationDuration: '5.8s', animationDelay: '-3.2s' }}
+         />
+         <FooterHexagon 
+            size={150} 
+            className="bottom-0 left-1/3 text-[#00AEEF] opacity-[0.1] animate-float" 
+            style={{ animationDuration: '8.5s', animationDelay: '-0.5s' }}
+         />
+         <FooterHexagon 
+            size={400} 
+            className="-bottom-32 -right-32 text-[#00AEEF] opacity-[0.2] animate-float" 
+            style={{ animationDuration: '11s', animationDelay: '-4s' }}
+         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -142,7 +158,7 @@ const SocialIcon = ({ icon, href }: { icon: React.ReactNode, href: string }) => 
   </a>
 );
 
-const FooterHexagon = ({ className, size }: { className: string, size: number }) => (
+const FooterHexagon = ({ className, size, style }: { className: string, size: number, style?: React.CSSProperties }) => (
   <svg
     width={size}
     height={size}
@@ -153,6 +169,7 @@ const FooterHexagon = ({ className, size }: { className: string, size: number })
     strokeLinecap="round"
     strokeLinejoin="round"
     className={`absolute ${className}`}
+    style={style}
   >
     <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" />
   </svg>

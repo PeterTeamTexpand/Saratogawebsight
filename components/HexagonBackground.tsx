@@ -1,3 +1,4 @@
+
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 
 const Hexagon = ({ className, size = 100 }: { className?: string; size?: number }) => (
@@ -34,11 +35,6 @@ const DraggableWrapper: React.FC<DraggableProps> = ({ children, initialClassName
     const clientY = 'touches' in e ? e.touches[0].clientY : e.clientY;
     dragStartPos.current = { x: clientX, y: clientY };
     elementStartPos.current = { x: position.x, y: position.y };
-    
-    // Prevent default to avoid scrolling on mobile during drag
-    if ('touches' in e) {
-        // e.preventDefault(); // Can cause issues with scroll if not careful, but good for pure drag
-    }
   };
 
   const onMouseMove = useCallback((e: MouseEvent | TouchEvent) => {
@@ -100,70 +96,52 @@ const HexagonBackground: React.FC = () => {
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
       
-      {/* Top Left - Moved down and right */}
+      {/* MOBILE (Essentials Only) */}
       <DraggableWrapper initialClassName="absolute top-20 left-10 text-sky-500">
-        <div className="animate-float delay-100">
-          <Hexagon size={180} />
-        </div>
-      </DraggableWrapper>
-      
-      {/* Top Center-Right */}
-      <DraggableWrapper initialClassName="absolute top-20 left-1/2 text-sky-500">
-        <div className="animate-float delay-300">
-          <Hexagon size={120} />
-        </div>
-      </DraggableWrapper>
-
-       {/* Top Right */}
-       <DraggableWrapper initialClassName="absolute top-32 right-20 text-sky-500">
-        <div className="animate-float">
-          <Hexagon size={250} />
-        </div>
-      </DraggableWrapper>
-
-      {/* Middle Left - Pushed down to 45% and right slightly */}
-      <DraggableWrapper initialClassName="absolute top-[45%] left-10 text-sky-500">
-        <div className="animate-float delay-200">
-          <Hexagon size={80} />
-        </div>
-      </DraggableWrapper>
-
-      {/* Center Big */}
-      <DraggableWrapper initialClassName="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sky-600 opacity-20">
-        <div className="animate-float delay-200">
-          <Hexagon size={600} />
-        </div>
-      </DraggableWrapper>
-
-      {/* Bottom Left - Pushed down to 85% */}
-      <DraggableWrapper initialClassName="absolute top-[85%] left-5 text-sky-500">
-        <div className="animate-float delay-500">
-          <Hexagon size={140} />
-        </div>
-      </DraggableWrapper>
-
-      {/* Bottom Left-Center */}
-      <DraggableWrapper initialClassName="absolute bottom-32 left-40 text-sky-500">
-        <div className="animate-float delay-500">
+        <div className="animate-float" style={{ animationDuration: '7s' }}>
           <Hexagon size={150} />
         </div>
       </DraggableWrapper>
+      
+      <DraggableWrapper initialClassName="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-sky-600 opacity-20">
+        <div className="animate-float" style={{ animationDuration: '10s' }}>
+          <Hexagon size={400} />
+        </div>
+      </DraggableWrapper>
 
-       {/* Bottom Right */}
-       <DraggableWrapper initialClassName="absolute bottom-20 right-40 text-sky-500">
-        <div className="animate-float delay-100">
+      {/* TABLET + DESKTOP */}
+      <DraggableWrapper initialClassName="absolute hidden sm:block top-32 right-10 text-sky-500">
+        <div className="animate-float" style={{ animationDuration: '8s' }}>
           <Hexagon size={200} />
         </div>
       </DraggableWrapper>
-      
-       {/* Bottom Center */}
-       <DraggableWrapper initialClassName="absolute bottom-10 left-2/3 text-sky-500">
-        <div className="animate-float delay-300">
+
+      <DraggableWrapper initialClassName="absolute hidden md:block bottom-20 left-40 text-sky-500">
+        <div className="animate-float" style={{ animationDuration: '6s' }}>
+          <Hexagon size={180} />
+        </div>
+      </DraggableWrapper>
+
+      {/* DESKTOP ONLY */}
+      <DraggableWrapper initialClassName="absolute hidden lg:block top-40 left-1/2 text-sky-500">
+        <div className="animate-float" style={{ animationDuration: '5.5s' }}>
           <Hexagon size={100} />
         </div>
       </DraggableWrapper>
 
-      {/* Top Gradient Mask - Placed last to ensure it overlays hexagons */}
+      <DraggableWrapper initialClassName="absolute hidden lg:block bottom-10 right-40 text-sky-500">
+        <div className="animate-float" style={{ animationDuration: '9s' }}>
+          <Hexagon size={140} />
+        </div>
+      </DraggableWrapper>
+      
+      <DraggableWrapper initialClassName="absolute hidden lg:block top-[60%] left-10 text-sky-500">
+        <div className="animate-float" style={{ animationDuration: '7.5s' }}>
+          <Hexagon size={80} />
+        </div>
+      </DraggableWrapper>
+
+      {/* Top Gradient Mask */}
       <div className="absolute top-0 left-0 right-0 h-48 bg-gradient-to-b from-black via-black to-transparent z-20 pointer-events-none" />
     </div>
   );
