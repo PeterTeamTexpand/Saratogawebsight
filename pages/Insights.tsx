@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Search, Calendar, User, Folder, ArrowRight, Play, FileText, Loader2, Hexagon, ChevronLeft } from 'lucide-react';
 import { Link, useSearchParams } from 'react-router-dom';
@@ -54,14 +55,14 @@ const Insights: React.FC = () => {
         </div>
 
         <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in">
-           <h4 className="text-[#00AEEF] font-bold tracking-[0.3em] uppercase text-[10px] mb-6">
+           <h4 className="text-[#00AEEF] font-black tracking-[0.4em] uppercase text-[11px] mb-6">
               INSIGHTS DIRECTORY
            </h4>
-           <h1 className="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight">
+           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight tracking-tight">
              Thoughts & <br />
              <span className="text-[#00AEEF]">Strategies.</span>
            </h1>
-           <p className="text-base text-gray-400 max-w-2xl mx-auto leading-relaxed font-light mb-10">
+           <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed font-light mb-10">
              Deep dives into technology, management, and the future of digital enterprise architecture.
            </p>
         </div>

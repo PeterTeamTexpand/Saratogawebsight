@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import HexagonBackground from '../components/HexagonBackground';
@@ -18,7 +19,7 @@ const Home: React.FC = () => {
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#00AEEF] to-[#0072bc] pb-2">Amplified.</span>
           </h1>
           
-          <p className="mt-6 text-xl text-gray-400 max-w-3xl mx-auto animate-fade-in delay-100 leading-relaxed">
+          <p className="mt-6 text-lg md:text-xl text-gray-400 max-w-3xl mx-auto animate-fade-in delay-100 leading-relaxed font-light">
             Saratoga will elevate your business with custom solutions tailored to your needs. 
             Explore our innovative services for comprehensive solution development.
           </p>
@@ -77,7 +78,7 @@ const Home: React.FC = () => {
                    <div className="w-1 h-12 bg-gradient-to-b from-transparent via-[#00AEEF] to-transparent opacity-50"></div>
                 </div>
 
-                <h3 className="text-[#00AEEF] font-bold tracking-[0.2em] uppercase text-xs md:text-sm mb-6 animate-fade-in delay-100">
+                <h3 className="text-[#00AEEF] font-black tracking-[0.3em] uppercase text-[11px] mb-6 animate-fade-in delay-100">
                   Software Solutions That Make Sense. For You. And Your Business.
                 </h3>
                 
@@ -88,7 +89,7 @@ const Home: React.FC = () => {
                 
                 <div className="w-24 h-1 bg-[#00AEEF] mx-auto mb-8 rounded-full"></div>
 
-                <p className="text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-300 font-light">
+                <p className="text-lg md:text-xl text-gray-400 leading-relaxed max-w-3xl mx-auto animate-fade-in delay-300 font-light">
                   For over two decades, we have mastered the art of recruiting top talent and refining delivery processes to eliminate risk and guarantee quality outcomes.
                 </p>
              </div>
@@ -199,7 +200,7 @@ const Home: React.FC = () => {
              <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 max-w-3xl">
                Just straightforward solutions, and exceptional results.
              </h2>
-             <p className="text-xl text-gray-400 max-w-3xl">
+             <p className="text-lg md:text-xl text-gray-400 max-w-3xl font-light">
                We get tech. We get you. So you get software solutions that make sense for your business, plain and simple.
              </p>
           </div>
@@ -265,7 +266,7 @@ const Home: React.FC = () => {
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,_rgba(0,174,239,0.05),transparent_50%)]" />
         <div className="max-w-4xl mx-auto text-center relative z-10">
             <h2 className="text-5xl md:text-6xl font-bold mb-8 text-white">Ready to start your journey?</h2>
-            <p className="text-xl text-gray-400 mb-12 max-w-2xl mx-auto">
+            <p className="text-lg md:text-xl text-gray-400 mb-12 max-w-2xl mx-auto font-light">
               Whether you need strategic consulting or a custom software solution, we're here to help you succeed.
             </p>
             <Link 
