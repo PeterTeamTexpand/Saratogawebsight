@@ -1,3 +1,4 @@
+
 import { GoogleGenAI, Type } from "@google/genai";
 import { AspectRatio, ImageSize } from '../types';
 
@@ -6,12 +7,13 @@ const getAiClient = () => {
   return new GoogleGenAI({ apiKey: process.env.API_KEY });
 };
 
-// 1. General Text/Reasoning (Gemini 2.5 Flash)
+// 1. General Text/Reasoning (Gemini 3 Flash)
 export const askGemini = async (prompt: string): Promise<string> => {
   const ai = getAiClient();
   try {
+    // Using gemini-3-flash-preview for basic text tasks as per guidelines
     const response = await ai.models.generateContent({
-      model: 'gemini-2.5-flash',
+      model: 'gemini-3-flash-preview',
       contents: prompt,
     });
     return response.text || "No response generated.";
@@ -152,7 +154,8 @@ export const generateVideo = async (
 
     // Poll for completion
     while (!operation.done) {
-      await new Promise(resolve => setTimeout(resolve, 5000)); // Poll every 5s
+      // Poll every 10 seconds as recommended in Veo guidelines
+      await new Promise(resolve => setTimeout(resolve, 10000));
       operation = await ai.operations.getVideosOperation({ operation: operation });
     }
 

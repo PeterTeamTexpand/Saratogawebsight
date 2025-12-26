@@ -1,410 +1,305 @@
-import React, { useState, useRef } from 'react';
-import { Sparkles, Image as ImageIcon, Video, Wand2, Upload, MonitorPlay } from 'lucide-react';
-import { AspectRatio, ImageSize } from '../types';
-import * as GeminiService from '../services/geminiService';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Cpu, LineChart, Quote, Terminal, ChevronLeft, ChevronRight, Circle, CircleDot } from 'lucide-react';
+import HexagonBackground from '../components/HexagonBackground';
 
 const Services: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'generate' | 'edit' | 'video' | 'chat'>('generate');
+  return (
+    <div className="min-h-screen bg-black text-white selection:bg-[#00AEEF] selection:text-white pb-12 pt-20">
+      
+      {/* 1. Standardized Hero Section */}
+      <section className="relative pt-12 pb-20 px-4 overflow-hidden">
+        {/* Background Accents */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[#00AEEF]/10 blur-[120px] rounded-full pointer-events-none" />
+        <div className="absolute inset-0 opacity-30 pointer-events-none">
+           <HexagonBackground />
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center relative z-10 animate-fade-in">
+           <h4 className="text-[#00AEEF] font-bold tracking-[0.3em] uppercase text-xs mb-6">
+              OUR SERVICES
+           </h4>
+           <h1 className="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+             Custom Solutions. <br/>
+             <span className="text-[#00AEEF]">Uniquely Crafted.</span>
+           </h1>
+           <p className="text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed font-light mb-10">
+             Tailored custom solutions designed to address your specific needs and drive success.
+           </p>
+        </div>
+      </section>
+
+      {/* Blue Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-[#00AEEF]/50 to-transparent"></div>
+
+      {/* 2. Introduction */}
+      <section className="py-24 px-4 bg-black relative z-20">
+         <div className="max-w-6xl mx-auto flex flex-col lg:flex-row items-start lg:items-center gap-12 animate-fade-in delay-100">
+            
+            <div className="flex-shrink-0 lg:w-auto">
+               <h2 className="text-4xl md:text-5xl font-bold text-white leading-tight mb-4">
+                  Looking for a <br/>
+                  digital partner?
+               </h2>
+               <span className="text-[#00AEEF] text-sm font-bold tracking-[0.25em] uppercase block">
+                  EST. 1998
+               </span>
+            </div>
+            
+            <div className="hidden lg:block w-px h-24 bg-white/10 self-center"></div>
+
+            <div className="lg:flex-1">
+               <p className="text-gray-300 text-lg leading-relaxed font-light">
+                  For over 25 years, we have designed, built, and ran innovative technology solutions. We reduce risk, accelerate growth, and drive competitive advantage through sustainable strategies.
+               </p>
+            </div>
+         </div>
+      </section>
+
+      {/* Blue Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-[#00AEEF]/50 to-transparent"></div>
+
+      {/* 3. Service Offerings Grid */}
+      <section className="py-24 px-4 max-w-7xl mx-auto relative z-20">
+         <div className="text-center mb-16 animate-fade-in">
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Service Offerings</h2>
+            <div className="w-24 h-1 bg-[#00AEEF] mx-auto rounded-full"></div>
+         </div>
+
+         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Software Delivery */}
+            <ServiceCard 
+               icon={<Terminal size={32} />}
+               title="Software Delivery"
+               desc="Removing risks to deliver quality outcomes, on time."
+               items={[
+                 "Custom Software Development", 
+                 "Product Development",
+                 "Agile Staff Augmentation",
+                 "Cloud Migration",
+                 "Data & Business Intelligence"
+               ]}
+               delay="delay-100"
+            />
+             
+             {/* AI & ML */}
+             <ServiceCard 
+               icon={<Cpu size={32} />}
+               title="AI & Machine Learning"
+               desc="Leverage data to automate tasks and gain real-time insights."
+               items={[
+                 "AI Agents & Chatbots",
+                 "Generative AI Integration",
+                 "Predictive Analytics",
+                 "Process Automation",
+                 "Knowledge Bases"
+               ]}
+               delay="delay-200"
+               highlight
+            />
+             
+             {/* Tech Advisory */}
+             <ServiceCard 
+               icon={<LineChart size={32} />}
+               title="Technology Advisory"
+               desc="Aligning technology to business strategy for maximum value."
+               items={[
+                 "Architecture Review",
+                 "Technology Strategy",
+                 "Digital Transformation",
+                 "IT Due Diligence",
+                 "Project Recovery"
+               ]}
+               delay="delay-300"
+            />
+         </div>
+      </section>
+
+      {/* Blue Separator */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-[#00AEEF]/50 to-transparent"></div>
+
+      {/* 4. Testimonials Deck */}
+      <section className="py-24 px-4 max-w-7xl mx-auto relative z-20">
+         <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-white mb-6">Client Testimonials</h2>
+            <p className="text-gray-400 text-lg">Trusted by industry leaders.</p>
+         </div>
+         
+         <TestimonialDeck />
+      </section>
+
+      {/* Call to Action */}
+      <section className="pb-24 px-4 text-center">
+         <div className="max-w-3xl mx-auto bg-black border border-white/10 rounded-3xl p-12 hover:border-[#00AEEF]/50 transition-colors duration-500 group">
+            <h2 className="text-3xl font-bold text-white mb-6">Ready to transform?</h2>
+            <p className="text-gray-400 mb-8">
+               Custom software, AI strategy, or technical advisory—we are ready to help.
+            </p>
+            <Link 
+               to="/contact" 
+               className="inline-block bg-[#00AEEF] text-white font-bold py-4 px-10 rounded-full hover:bg-[#008ec2] transition-all shadow-lg hover:shadow-[#00AEEF]/30 transform group-hover:-translate-y-1"
+            >
+               Contact Us Today
+            </Link>
+         </div>
+      </section>
+
+    </div>
+  );
+};
+
+/* --- Testimonial Deck Component --- */
+
+const TestimonialDeck: React.FC = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+
+  const nextSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev + 1) % TESTIMONIALS.length);
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const prevSlide = () => {
+    if (isAnimating) return;
+    setIsAnimating(true);
+    setTimeout(() => {
+      setCurrentIndex((prev) => (prev - 1 + TESTIMONIALS.length) % TESTIMONIALS.length);
+      setIsAnimating(false);
+    }, 300);
+  };
+
+  const first = TESTIMONIALS[currentIndex];
+  const second = TESTIMONIALS[(currentIndex + 1) % TESTIMONIALS.length];
 
   return (
-    <div className="min-h-screen bg-black pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <h2 className="text-[#00AEEF] font-bold tracking-wide uppercase text-sm">Services & Solutions</h2>
-          <h1 className="mt-2 text-4xl font-extrabold text-white sm:text-5xl">
-            Next-Gen AI Capabilities
-          </h1>
-          <p className="mt-4 max-w-2xl text-xl text-gray-400 mx-auto">
-            Experience our Nano Banana and Veo powered suite of tools. 
-            Real-time generation, editing, and video production.
-          </p>
-        </div>
+    <div className="relative">
+      <button 
+        onClick={prevSlide}
+        className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-2 md:-translate-x-12 z-20 p-2 bg-black/50 border border-gray-700 rounded-full text-white hover:border-[#00AEEF] hover:text-[#00AEEF] transition-all"
+      >
+        <ChevronLeft size={20} />
+      </button>
+      
+      <button 
+        onClick={nextSlide}
+        className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-2 md:translate-x-12 z-20 p-2 bg-black/50 border border-gray-700 rounded-full text-white hover:border-[#00AEEF] hover:text-[#00AEEF] transition-all"
+      >
+        <ChevronRight size={20} />
+      </button>
 
-        {/* Tab Navigation */}
-        <div className="flex flex-wrap justify-center gap-2 mb-12">
-          <TabButton 
-            active={activeTab === 'generate'} 
-            onClick={() => setActiveTab('generate')} 
-            icon={<ImageIcon size={20} />}
-            label="Image Gen" 
-          />
-          <TabButton 
-            active={activeTab === 'edit'} 
-            onClick={() => setActiveTab('edit')} 
-            icon={<Wand2 size={20} />}
-            label="Image Edit" 
-          />
-          <TabButton 
-            active={activeTab === 'video'} 
-            onClick={() => setActiveTab('video')} 
-            icon={<Video size={20} />}
-            label="Video Studio" 
-          />
-          <TabButton 
-            active={activeTab === 'chat'} 
-            onClick={() => setActiveTab('chat')} 
-            icon={<Sparkles size={20} />}
-            label="Intelligence" 
-          />
-        </div>
+      <div className={`grid grid-cols-1 md:grid-cols-2 gap-6 transition-opacity duration-300 ${isAnimating ? 'opacity-0' : 'opacity-100'}`}>
+         <SmallTestimonialCard data={first} />
+         <div className="hidden md:block">
+            <SmallTestimonialCard data={second} />
+         </div>
+      </div>
 
-        {/* Content Area */}
-        <div className="bg-gray-900/50 border border-gray-800 rounded-3xl p-6 md:p-10 shadow-2xl backdrop-blur-sm min-h-[500px]">
-          {activeTab === 'generate' && <ImageGenerationTool />}
-          {activeTab === 'edit' && <ImageEditorTool />}
-          {activeTab === 'video' && <VideoStudioTool />}
-          {activeTab === 'chat' && <ChatTool />}
-        </div>
+      <div className="flex justify-center gap-2 mt-8">
+        {TESTIMONIALS.map((_, idx) => (
+          <button 
+            key={idx}
+            onClick={() => setCurrentIndex(idx)}
+            className={`transition-colors duration-300 ${idx === currentIndex ? 'text-[#00AEEF]' : 'text-gray-700 hover:text-gray-500'}`}
+          >
+            {idx === currentIndex ? <CircleDot size={10} /> : <Circle size={10} />}
+          </button>
+        ))}
       </div>
     </div>
   );
 };
 
-const TabButton = ({ active, onClick, icon, label }: { active: boolean; onClick: () => void; icon: React.ReactNode; label: string }) => (
-  <button
-    onClick={onClick}
-    className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${
-      active 
-        ? 'bg-[#00AEEF] text-white shadow-[0_0_15px_rgba(0,174,239,0.4)]' 
-        : 'bg-gray-800 text-gray-400 hover:bg-gray-700 hover:text-white'
-    }`}
-  >
-    {icon}
-    {label}
-  </button>
+const SmallTestimonialCard = ({ data }: { data: any }) => (
+  <div className="bg-black border border-white/10 rounded-2xl p-6 md:p-8 flex flex-col h-full hover:border-[#00AEEF]/30 transition-colors shadow-lg relative overflow-hidden group">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-[#00AEEF]/5 blur-[40px] rounded-full pointer-events-none group-hover:bg-[#00AEEF]/10 transition-colors" />
+      
+      <div className="mb-6 h-12 flex items-center">
+          <CompanyLogo company={data.company} />
+      </div>
+
+      <div className="flex-1 relative mb-6">
+          <Quote className="text-[#00AEEF] w-8 h-8 mb-4 opacity-50" />
+          <p className="text-gray-300 leading-relaxed font-light italic text-sm md:text-base relative z-10">
+            "{data.quote}"
+          </p>
+      </div>
+
+      <div className="border-t border-gray-800 pt-4">
+          <h4 className="text-white font-bold text-sm">{data.author}</h4>
+          <p className="text-[#00AEEF] text-xs">
+            {data.role}
+          </p>
+      </div>
+  </div>
 );
 
-/* --- Feature Components --- */
-
-// 1. Image Generation Tool
-const ImageGenerationTool: React.FC = () => {
-  const [prompt, setPrompt] = useState('');
-  const [size, setSize] = useState<ImageSize>(ImageSize.Size1K);
-  const [ratio, setRatio] = useState<AspectRatio>(AspectRatio.Ratio1_1);
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleGenerate = async () => {
-    if (!prompt) return;
-    setLoading(true);
-    setError(null);
-    try {
-      const imgData = await GeminiService.generateImage(prompt, ratio, size);
-      setResult(imgData);
-    } catch (err: any) {
-      setError(err.message || 'Generation failed');
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full">
-      <div className="space-y-6">
-        <div>
-           <label className="block text-sm font-medium text-gray-300 mb-2">Prompt</label>
-           <textarea 
-             className="w-full bg-black border border-gray-700 rounded-xl p-4 text-white focus:ring-2 focus:ring-[#00AEEF] outline-none transition"
-             rows={4}
-             placeholder="Describe the image you want to see..."
-             value={prompt}
-             onChange={(e) => setPrompt(e.target.value)}
-           />
-        </div>
-
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Aspect Ratio</label>
-            <select 
-              className="w-full bg-black border border-gray-700 rounded-lg p-3 text-white outline-none"
-              value={ratio}
-              onChange={(e) => setRatio(e.target.value as AspectRatio)}
-            >
-              {Object.values(AspectRatio).map((r) => <option key={r} value={r}>{r}</option>)}
-            </select>
-          </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Resolution</label>
-            <select 
-              className="w-full bg-black border border-gray-700 rounded-lg p-3 text-white outline-none"
-              value={size}
-              onChange={(e) => setSize(e.target.value as ImageSize)}
-            >
-              {Object.values(ImageSize).map((s) => <option key={s} value={s}>{s}</option>)}
-            </select>
-          </div>
-        </div>
-
-        <button 
-          onClick={handleGenerate}
-          disabled={loading || !prompt}
-          className="w-full bg-[#00AEEF] hover:bg-[#008ec2] disabled:opacity-50 disabled:cursor-not-allowed text-white font-bold py-4 rounded-xl transition-all shadow-lg flex justify-center items-center gap-2"
-        >
-          {loading ? <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" /> : <Sparkles size={20} />}
-          {loading ? 'Generating...' : 'Generate with Nano Banana Pro'}
-        </button>
-        {error && <p className="text-red-400 text-sm">{error}</p>}
-      </div>
-
-      <div className="bg-black rounded-xl border border-gray-800 flex items-center justify-center min-h-[400px] overflow-hidden relative">
-        {result ? (
-          <img src={result} alt="Generated" className="w-full h-full object-contain" />
-        ) : (
-          <div className="text-center text-gray-600">
-            <ImageIcon size={48} className="mx-auto mb-2 opacity-50" />
-            <p>Preview area</p>
-          </div>
-        )}
-      </div>
-    </div>
-  );
+const CompanyLogo = ({ company }: { company: string }) => {
+  if (company.includes("Stewardship")) return <div className="text-2xl font-bold text-[#e11d48]">stewardship</div>;
+  if (company.includes("WCS")) return <div className="text-3xl font-black text-[#1e3a8a]">WCS</div>;
+  if (company.includes("IOL")) return <span className="text-2xl font-bold text-white">IOL</span>;
+  if (company.includes("Cedar Springs")) return <div className="text-[#1e40af] text-xs font-serif uppercase border border-gray-700 px-2 py-1">Cedar Springs</div>;
+  if (company.includes("Momentum")) return <div className="text-xl font-bold italic text-white">Momentum</div>;
+  return <div className="px-3 py-1 border border-white/20 rounded text-sm font-bold text-gray-300 uppercase">{company}</div>;
 };
 
-// 2. Image Editor Tool
-const ImageEditorTool: React.FC = () => {
-  const [selectedFile, setSelectedFile] = useState<File | null>(null);
-  const [preview, setPreview] = useState<string | null>(null);
-  const [prompt, setPrompt] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [result, setResult] = useState<string | null>(null);
-  const fileInputRef = useRef<HTMLInputElement>(null);
-
-  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const file = e.target.files[0];
-      setSelectedFile(file);
-      const reader = new FileReader();
-      reader.onloadend = () => setPreview(reader.result as string);
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleEdit = async () => {
-    if (!preview || !prompt) return;
-    setLoading(true);
-    try {
-      const edited = await GeminiService.editImage(preview, prompt, selectedFile?.type);
-      setResult(edited);
-    } catch (err) {
-      alert("Edit failed. See console.");
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 h-full">
-      <div className="space-y-6">
-        <div 
-          onClick={() => fileInputRef.current?.click()}
-          className="border-2 border-dashed border-gray-700 rounded-xl p-8 text-center cursor-pointer hover:border-[#00AEEF] hover:bg-gray-800/30 transition group"
-        >
-           <input type="file" ref={fileInputRef} className="hidden" accept="image/*" onChange={handleFileChange} />
-           <Upload className="mx-auto mb-2 text-gray-500 group-hover:text-[#00AEEF]" size={32} />
-           <p className="text-gray-400">{selectedFile ? selectedFile.name : "Click to upload source image"}</p>
-        </div>
-
-        <div>
-           <label className="block text-sm font-medium text-gray-300 mb-2">Edit Instruction</label>
-           <input 
-             type="text"
-             className="w-full bg-black border border-gray-700 rounded-xl p-4 text-white focus:ring-2 focus:ring-[#00AEEF] outline-none"
-             placeholder='e.g., "Add a retro filter" or "Remove the background"'
-             value={prompt}
-             onChange={(e) => setPrompt(e.target.value)}
-           />
-        </div>
-
-        <button 
-          onClick={handleEdit}
-          disabled={loading || !preview || !prompt}
-          className="w-full bg-[#00AEEF] hover:bg-[#008ec2] disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-all shadow-lg flex justify-center items-center gap-2"
-        >
-          {loading ? 'Editing...' : 'Edit with Nano Banana'}
-        </button>
-      </div>
-
-      <div className="grid grid-rows-2 gap-4 h-[500px]">
-         <div className="bg-black rounded-xl border border-gray-800 relative overflow-hidden flex items-center justify-center">
-            {preview && <img src={preview} className="max-h-full max-w-full object-contain" alt="Original" />}
-            <span className="absolute top-2 left-2 bg-black/70 px-2 py-1 rounded text-xs">Original</span>
-         </div>
-         <div className="bg-black rounded-xl border border-gray-800 relative overflow-hidden flex items-center justify-center">
-            {result ? (
-               <img src={result} className="max-h-full max-w-full object-contain" alt="Edited" />
-            ) : (
-              <p className="text-gray-600">Edited result will appear here</p>
-            )}
-            <span className="absolute top-2 left-2 bg-[#00AEEF]/80 px-2 py-1 rounded text-xs">Result</span>
-         </div>
-      </div>
-    </div>
-  );
-};
-
-// 3. Video Studio Tool
-const VideoStudioTool: React.FC = () => {
-  const [prompt, setPrompt] = useState('');
-  const [file, setFile] = useState<File | null>(null);
-  const [base64Image, setBase64Image] = useState<string | null>(null);
-  const [aspect, setAspect] = useState<'16:9' | '9:16'>('16:9');
-  const [loading, setLoading] = useState(false);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-
-  const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files?.[0]) {
-       const f = e.target.files[0];
-       setFile(f);
-       const reader = new FileReader();
-       reader.onloadend = () => setBase64Image(reader.result as string);
-       reader.readAsDataURL(f);
-    }
-  };
-
-  const generate = async () => {
-    setLoading(true);
-    setVideoUrl(null);
-    try {
-      const url = await GeminiService.generateVideo(prompt, base64Image, aspect);
-      setVideoUrl(url);
-    } catch (e: any) {
-      alert("Video generation failed: " + e.message);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-       <div className="space-y-6">
-          <div className="bg-blue-900/20 border border-blue-800 p-4 rounded-lg">
-            <p className="text-sm text-blue-200">
-              Powered by <strong>Veo</strong>. Requires a paid GCP project key selection.
-            </p>
-          </div>
-          
-          <div>
-            <label className="block text-sm font-medium text-gray-300 mb-2">Video Prompt</label>
-            <textarea 
-               value={prompt}
-               onChange={(e) => setPrompt(e.target.value)}
-               className="w-full bg-black border border-gray-700 rounded-xl p-4 text-white focus:ring-2 focus:ring-[#00AEEF] outline-none"
-               rows={3}
-               placeholder="A cinematic drone shot of a futuristic city..."
-            />
-          </div>
-
-          <div>
-             <label className="block text-sm font-medium text-gray-300 mb-2">Start Image (Optional)</label>
-             <input type="file" onChange={handleFile} className="text-gray-400" accept="image/*" />
-          </div>
-
-          <div>
-             <label className="block text-sm font-medium text-gray-300 mb-2">Aspect Ratio</label>
-             <div className="flex gap-4">
-                <button 
-                  onClick={() => setAspect('16:9')}
-                  className={`px-4 py-2 rounded-lg border ${aspect === '16:9' ? 'border-[#00AEEF] bg-[#00AEEF]/20' : 'border-gray-700'}`}
-                >
-                  Landscape (16:9)
-                </button>
-                <button 
-                  onClick={() => setAspect('9:16')}
-                  className={`px-4 py-2 rounded-lg border ${aspect === '9:16' ? 'border-[#00AEEF] bg-[#00AEEF]/20' : 'border-gray-700'}`}
-                >
-                  Portrait (9:16)
-                </button>
-             </div>
-          </div>
-
-          <button 
-            onClick={generate}
-            disabled={loading || !prompt}
-            className="w-full bg-[#00AEEF] hover:bg-[#008ec2] disabled:opacity-50 text-white font-bold py-4 rounded-xl transition-all shadow-lg flex justify-center items-center gap-2"
-          >
-            {loading ? 'Creating Magic...' : 'Generate Video with Veo'}
-          </button>
-       </div>
-
-       <div className="bg-black rounded-xl border border-gray-800 flex flex-col items-center justify-center p-4">
-          {videoUrl ? (
-            <video controls src={videoUrl} className="w-full h-full rounded-lg" autoPlay loop />
-          ) : (
-            <div className="text-center text-gray-600">
-               <MonitorPlay size={48} className="mx-auto mb-2 opacity-50" />
-               <p>Video output</p>
-            </div>
-          )}
-          {loading && <p className="mt-4 text-[#00AEEF] animate-pulse">Veo is rendering frames...</p>}
-       </div>
-    </div>
-  );
-};
-
-// 4. Chat Tool
-const ChatTool: React.FC = () => {
-  const [messages, setMessages] = useState<{role: string, text: string}[]>([
-    {role: 'model', text: 'Hello! I am your Saratoga AI assistant. How can I help you analyze your data or optimize your software today?'}
-  ]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const bottomRef = useRef<HTMLDivElement>(null);
-
-  const send = async () => {
-    if (!input.trim()) return;
-    const userMsg = input;
-    setInput('');
-    setMessages(prev => [...prev, {role: 'user', text: userMsg}]);
-    setLoading(true);
-
-    try {
-      // In a real chat, we'd pass history. For this simple demo, we just pass the last prompt.
-      // Or construct a history string.
-      const response = await GeminiService.askGemini(userMsg);
-      setMessages(prev => [...prev, {role: 'model', text: response}]);
-    } catch (e) {
-      setMessages(prev => [...prev, {role: 'model', text: "Sorry, I encountered an error."}]);
-    } finally {
-      setLoading(false);
-      setTimeout(() => bottomRef.current?.scrollIntoView({ behavior: 'smooth' }), 100);
-    }
-  };
-
-  return (
-    <div className="flex flex-col h-[600px]">
-       <div className="flex-1 overflow-y-auto space-y-4 p-4 scrollbar-thin scrollbar-thumb-gray-700">
-          {messages.map((m, i) => (
-             <div key={i} className={`flex ${m.role === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div className={`max-w-[80%] rounded-2xl px-5 py-3 ${
-                   m.role === 'user' 
-                   ? 'bg-[#00AEEF] text-white rounded-br-none' 
-                   : 'bg-gray-800 text-gray-200 rounded-bl-none'
-                }`}>
-                   {m.text}
-                </div>
-             </div>
+const ServiceCard = ({ icon, title, desc, items, delay, highlight }: any) => (
+  <div className={`h-full bg-black border ${highlight ? 'border-[#00AEEF] shadow-[0_0_30px_rgba(0,174,239,0.15)]' : 'border-white/10'} rounded-3xl p-8 hover:border-[#00AEEF]/50 transition-all duration-300 animate-fade-in ${delay} group flex flex-col`}>
+     <div className={`w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110 ${highlight ? 'bg-[#00AEEF] text-white' : 'bg-gray-900 text-[#00AEEF]'}`}>
+        {icon}
+     </div>
+     <h3 className="text-2xl font-bold text-white mb-4">{title}</h3>
+     <p className="text-gray-400 mb-8 leading-relaxed h-16">{desc}</p>
+     
+     <div className="mt-auto">
+       <h4 className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-4">Key Capabilities</h4>
+       <ul className="space-y-3">
+          {items.map((item: string, idx: number) => (
+            <li key={idx} className="flex items-start gap-3 text-sm text-gray-300">
+               <span className="w-1.5 h-1.5 bg-[#00AEEF] rounded-full mt-1.5 flex-shrink-0" />
+               <span className="group-hover:text-white transition-colors">{item}</span>
+            </li>
           ))}
-          <div ref={bottomRef} />
-       </div>
-       <div className="mt-4 flex gap-2">
-          <input 
-            className="flex-1 bg-black border border-gray-700 rounded-full px-6 py-3 text-white focus:outline-none focus:border-[#00AEEF]"
-            placeholder="Ask anything..."
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === 'Enter' && send()}
-          />
-          <button 
-             onClick={send}
-             disabled={loading}
-             className="bg-white text-black rounded-full p-3 hover:bg-gray-200 transition disabled:opacity-50"
-          >
-             <Sparkles size={20} className={loading ? 'animate-spin' : ''}/>
-          </button>
-       </div>
-    </div>
-  );
-};
+       </ul>
+     </div>
+  </div>
+);
+
+// Shorter Testimonials
+const TESTIMONIALS = [
+  {
+    quote: "Selecting a development partner meant ensuring a robust methodology. Saratoga excelled in keeping us on track across a worldwide footprint.",
+    author: "Project Lead",
+    role: "Global Program Manager",
+    company: "WCS"
+  },
+  {
+    quote: "Saratoga delivered a world-class solution that modernized our entire claims pipeline. Their attention to detail was impressive.",
+    author: "Michelle Vance",
+    role: "Head of IT",
+    company: "Momentum"
+  },
+  {
+    quote: "We required a partner who understood our unique community needs while delivering enterprise-grade software. Saratoga exceeded expectations.",
+    author: "David Graham",
+    role: "Director of Operations",
+    company: "Cedar Springs"
+  },
+  {
+    quote: "Technical expertise in building secure, high-availability platforms was crucial. A fantastic partnership.",
+    author: "James Peterson",
+    role: "CTO",
+    company: "Stewardship"
+  },
+  {
+    quote: "Agile approach allowed us to pivot quickly, delivering a superior product ahead of schedule.",
+    author: "Sarah Jenkins",
+    role: "Product Owner",
+    company: "IOL"
+  }
+];
 
 export default Services;

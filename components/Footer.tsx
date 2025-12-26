@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Twitter, Linkedin, Mail, Phone } from 'lucide-react';
+import { Linkedin, Facebook, Mail, Phone } from 'lucide-react';
 import { Logo } from './Logo';
 
 const Footer: React.FC = () => {
@@ -17,17 +17,17 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-neutral-950 border-t border-white/5 pt-16 pb-8 relative overflow-hidden">
+    <footer className="bg-neutral-950 border-t border-white/5 pt-10 pb-6 relative overflow-hidden">
       {/* Decorative Footer Hexagons */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-         <FooterHexagon size={300} className="-top-20 -left-20 text-[#00AEEF] opacity-[0.03] animate-float delay-100" />
-         <FooterHexagon size={200} className="top-40 right-10 text-gray-700 opacity-[0.05] animate-float delay-300" />
-         <FooterHexagon size={150} className="bottom-0 left-1/3 text-[#00AEEF] opacity-[0.02] animate-float delay-500" />
-         <FooterHexagon size={400} className="-bottom-32 -right-32 text-[#00AEEF] opacity-[0.04] animate-float" />
+         <FooterHexagon size={300} className="-top-20 -left-20 text-[#00AEEF] opacity-[0.15] animate-float delay-100" />
+         <FooterHexagon size={200} className="top-40 right-10 text-gray-700 opacity-[0.25] animate-float delay-300" />
+         <FooterHexagon size={150} className="bottom-0 left-1/3 text-[#00AEEF] opacity-[0.1] animate-float delay-500" />
+         <FooterHexagon size={400} className="-bottom-32 -right-32 text-[#00AEEF] opacity-[0.2] animate-float" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-8">
           {/* Brand Column */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
@@ -37,8 +37,14 @@ const Footer: React.FC = () => {
               Global software solutions architecting the future of digital enterprise.
             </p>
             <div className="flex gap-4">
-              <SocialIcon icon={<Linkedin size={18} />} />
-              <SocialIcon icon={<Twitter size={18} />} />
+              <SocialIcon 
+                href="http://www.linkedin.com/company/saratogasoftware" 
+                icon={<Linkedin size={18} />} 
+              />
+              <SocialIcon 
+                href="https://facebook.com/Saratogasoftware" 
+                icon={<Facebook size={18} />} 
+              />
             </div>
              <div className="flex items-center gap-2 text-gray-400 text-sm mt-4 hover:text-[#00AEEF] transition-colors">
                 <Mail size={16} />
@@ -53,14 +59,19 @@ const Footer: React.FC = () => {
                 South Africa (Head Office)
             </h3>
             <div className="space-y-4 text-sm text-gray-400">
-                <p className="leading-relaxed">
+                <a 
+                  href="https://maps.app.goo.gl/AcQxGbZ4oB7w5KXG6" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="leading-relaxed block hover:text-[#00AEEF] transition-colors"
+                >
                     4 Greenwhich Grove<br/>
                     Station Rd, Rondebosch<br/>
                     Cape Town, 7701
-                </p>
+                </a>
                 <div className="flex items-center gap-2">
                     <Phone size={14} className="text-[#00AEEF]" />
-                    <span>+27-21-658-4100</span>
+                    <a href="tel:+27216584100" className="hover:text-[#00AEEF] transition-colors">+27-21-658-4100</a>
                 </div>
             </div>
           </div>
@@ -72,11 +83,20 @@ const Footer: React.FC = () => {
                 United Kingdom
             </h3>
             <div className="space-y-4 text-sm text-gray-400">
-                <p className="leading-relaxed">
+                <a 
+                  href="https://maps.app.goo.gl/AcQxGbZ4oB7w5KXG6" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="leading-relaxed block hover:text-[#00AEEF] transition-colors"
+                >
                     40 Foregate Street<br/>
                     Worcester<br/>
                     WR1 1EE
-                </p>
+                </a>
+                <div className="flex items-center gap-2">
+                    <Phone size={14} className="text-[#00AEEF]" />
+                    <a href="tel:+441905388000" className="hover:text-[#00AEEF] transition-colors">+44 (0) 1905 388 000</a>
+                </div>
             </div>
           </div>
 
@@ -98,7 +118,7 @@ const Footer: React.FC = () => {
           </div>
         </div>
 
-        <div className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-gray-600 text-sm">
             SARATOGA SOFTWARE © 2025. All Rights Reserved.
           </p>
@@ -111,8 +131,13 @@ const Footer: React.FC = () => {
   );
 };
 
-const SocialIcon = ({ icon }: { icon: React.ReactNode }) => (
-  <a href="#" className="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#00AEEF] hover:text-white transition-all duration-300">
+const SocialIcon = ({ icon, href }: { icon: React.ReactNode, href: string }) => (
+  <a 
+    href={href} 
+    target="_blank" 
+    rel="noopener noreferrer" 
+    className="h-8 w-8 rounded-full bg-white/5 flex items-center justify-center text-gray-400 hover:bg-[#00AEEF] hover:text-white transition-all duration-300"
+  >
     {icon}
   </a>
 );

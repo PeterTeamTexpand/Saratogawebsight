@@ -10,6 +10,7 @@ import CaseStudies from './pages/CaseStudies';
 import People from './pages/People';
 import Insights from './pages/Insights';
 import Contact from './pages/Contact';
+import BlogPost from './pages/BlogPost';
 
 // Scroll to top wrapper
 const ScrollToTop = () => {
@@ -35,6 +36,7 @@ const App: React.FC = () => {
             <Route path="/case-studies" element={<CaseStudies />} />
             <Route path="/people" element={<People />} />
             <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:id" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>
